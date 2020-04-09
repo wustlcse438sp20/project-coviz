@@ -1,33 +1,42 @@
 package com.example.project_coviz
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import java.util.jar.Manifest
+import com.google.android.gms.maps.model.TileOverlay
+import com.google.android.gms.maps.model.TileOverlayOptions
+import com.google.maps.android.heatmaps.HeatmapTileProvider
+import org.json.JSONArray
+import org.json.JSONException
+import java.io.InputStream
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.random.Random
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var heatMapProvider : HeatmapTileProvider
+    private lateinit var heatMapOverlay: TileOverlay
     var PERMISSION_ID: Int = 45
     lateinit var userLatLng: LatLng
 
@@ -53,7 +62,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
+        addHeatMap()
         // Add a marker in Sydney and move the camera
         getLastLocation()
     }
@@ -145,6 +154,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             requestLocationPermissions()
         }
     }
+
     fun LocationRequest() {
         val locationRequest = LocationRequest.create()?.apply {
             interval = 10000
@@ -165,4 +175,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             Log.d("Location","User Lat Long:" +userLatLng.toString())
         }
     }
+
+    private fun addHeatMap() {
+        var list: MutableList<LatLng> = arrayListOf()
+        // Get the data: latitude/longitude positions of police stations.
+        try {
+            //TODO  SET THE LIST FROM THE API
+            for(i in 0..1000){
+//                var lat = Random.nextDouble(-90.0,90.0)
+//                var long = Random.nextDouble(-180.0,80.0)
+                var lat = Random.nextDouble(19.0,64.0)
+                var long = Random.nextDouble(-161.0,-68.0)
+                list.add(LatLng(lat,long))
+                Log.d("HEATMAP","Lat: "+lat+" Long: "+long+" List: "+list.toString())
+            }
+
+        } catch (e: JSONException) {
+            Toast.makeText(this, "Problem reading list of locations.", Toast.LENGTH_LONG).show()
+        }
+        // Create a heat map tile provider, passing it the latlngs of the police stations.
+        heatMapProvider = HeatmapTileProvider.Builder()
+            .data(list)
+            .build()
+        // Add a tile overlay to the map, using the heat map tile provider.
+        heatMapOverlay = mMap.addTileOverlay(TileOverlayOptions().tileProvider(heatMapProvider))
+    }
+
+    private fun updateHeatMap(){
+        // TODO Get updated location data to update heatmap
+        var data: ArrayList<LatLng>? = null
+        heatMapProvider.setData(data)
+        heatMapOverlay.clearTileCache()
+    }
+
 }
