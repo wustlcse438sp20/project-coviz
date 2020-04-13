@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 
-
+//Testing Jason
 class MainActivity : AppCompatActivity() {
 
     fun checkPermissions(): Boolean {
