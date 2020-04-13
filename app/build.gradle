@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.project_coviz"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -32,9 +32,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.maps.android:android-maps-utils:0.4+'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.6.0'
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
@@ -43,4 +45,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.google.guava:guava:24+'
+    //retrofit for REST
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+
+    //Moshi for type conversion
+    implementation 'com.squareup.retrofit2:converter-moshi:2.6.0'
+
+    //config
+    implementation 'com.natpryce:konfig:1.6.10.0'
 }
