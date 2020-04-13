@@ -6,14 +6,14 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "location")
+@Entity(tableName = "locations")
 data class LocationEntity (
     @ColumnInfo(name = "timestamp")
     val time: Long,
-    @ColumnInfo(name = "datestamp")
-    val date: Long,
     @ColumnInfo(name = "S2_cell_id")
-    val s2: Long
+    val cellId: String,
+    @ColumnInfo(name = "notified", defaultValue = "false")
+    var notified: Boolean
 )
 {
     @PrimaryKey(autoGenerate = true)

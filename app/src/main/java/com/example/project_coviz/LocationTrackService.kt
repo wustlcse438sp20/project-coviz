@@ -1,22 +1,15 @@
 package com.example.project_coviz
 
-import android.Manifest
 import android.app.Service
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.app.ServiceCompat
 import com.example.project_coviz.api.ApiClient
-import com.example.project_coviz.db.Loc
 import com.example.project_coviz.db.LocRepository
 import com.example.project_coviz.db.LocRoomDatabase
+import com.example.project_coviz.db.LocationEntity
 import com.example.project_coviz.s2.S2CellId
 import com.example.project_coviz.s2.S2LatLng
 import com.google.android.gms.location.*
@@ -41,12 +34,12 @@ class LocationTrackService : Service() {
                     // Update UI with location data
                     // ...
                     val cellId = S2CellId.fromLatLng(S2LatLng.fromDegrees(location.latitude, location.longitude)).parent(CELL_LEVEL).toToken()
-                    val timestamp = date.getTime();
+                    val timestamp = date.getTime()
                     Log.d("LOCATION",
                             "Got location update! ${location.latitude}, ${location.longitude}")
                     Log.d("LOCATION", "Cell Id: ${cellId} Timestamp: ${timestamp}")
 
-                    locationRepo.addLocation(Loc(cellId, timestamp)) { _ -> Unit}
+                    locationRepo.addLocation(LocationEntity(timestamp, cellId, false)) { _ -> Unit}
                     LatestLocation.setLatestLocationAndCellToken(location, cellId)
                     ApiClient.APIRepository.updateTimestampsForCurrentLocation(cellId)
                 }
