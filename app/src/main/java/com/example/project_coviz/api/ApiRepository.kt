@@ -20,6 +20,13 @@ class ApiRepository(val service: ApiInterface) {
         ApiClient.runQuery(service::getLocationAndTimestamps, resBody, cell_token)
     }
 
+    fun getLocationAndTimestamps(
+        resBody: MutableLiveData<LocationAndTimestampData>, cell_token: String, hours: Int) {
+        //Need to prepend appropriate search parameter to the query e.g. prepend the "artist:"
+        // to	https://api.deezer.com/search?q=artist:"aloe blacc"
+        ApiClient.runQuery(service::getLocationAndTimestampsForHours, resBody, cell_token, hours)
+    }
+
     fun postLocationAndTimestamps(data: LocationAndTimestampData) {
         // throw result away
         ApiClient.runQuery(service::postLocationAndTimestamps, MutableLiveData(), data)
