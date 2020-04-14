@@ -30,7 +30,20 @@ object ApiClient {
         CoroutineScope(Dispatchers.IO).launch {
             val result = f(query).execute()
             if(result.isSuccessful) {
-                println("success " /* + result.body() */ )
+                withContext(Dispatchers.Main) {
+                    liveData.setValue(result.body())
+                }
+            }
+            else {
+                Log.d("NETWORK", "FAILED")
+            }
+        }
+    }
+
+    fun <U,T, V> runQuery(f: (U, V) -> Call<T>, liveData: MutableLiveData<T>, query: U, query2: V) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = f(query, query2).execute()
+            if(result.isSuccessful) {
                 withContext(Dispatchers.Main) {
                     liveData.setValue(result.body())
                 }
@@ -45,7 +58,20 @@ object ApiClient {
         CoroutineScope(Dispatchers.IO).launch {
             val result = f(query).execute()
             if(result.isSuccessful) {
-                println("success " /* + result.body() */ )
+                withContext(Dispatchers.Main) {
+                    callback(result.body())
+                }
+            }
+            else {
+                Log.d("NETWORK", "FAILED")
+            }
+        }
+    }
+
+    fun <U,T,V> runQuery(f: (U, V) -> Call<T>, callback: (T?) -> Any, query: U, query2: V) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = f(query, query2).execute()
+            if(result.isSuccessful) {
                 withContext(Dispatchers.Main) {
                     callback(result.body())
                 }
@@ -60,7 +86,6 @@ object ApiClient {
         CoroutineScope(Dispatchers.IO).launch {
             val result = f().execute()
             if(result.isSuccessful) {
-                println("success " /* + result.body() */ )
                 withContext(Dispatchers.Main) {
                     liveData.setValue(result.body())
                 }
