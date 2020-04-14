@@ -6,8 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = arrayOf(Loc::class),
-    version = 1
+    entities = arrayOf(LocationEntity::class),
+    version = 2
 )
 
 public abstract class LocRoomDatabase: RoomDatabase() {

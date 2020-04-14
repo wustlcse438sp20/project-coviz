@@ -7,21 +7,21 @@ import kotlinx.coroutines.launch
 
 class LocRepository(private val locDao: LocDao) {
 
-    val allLocations: LiveData<List<Loc>> = locDao.getLocations()
+    val allLocations: LiveData<List<LocationEntity>> = locDao.getLocations()
 
-    fun getLocations(callback: (LiveData<List<Loc>>) -> Any) {
+    fun getLocations(callback: (LiveData<List<LocationEntity>>) -> Any) {
         CoroutineScope(Dispatchers.IO).launch {
             callback(locDao.getLocations())
         }
     }
 
-    fun getLatestLocations(laterThan: java.util.Date, callback: (LiveData<List<Loc>>) -> Any) {
+    fun getLatestLocations(laterThan: java.util.Date, callback: (LiveData<List<LocationEntity>>) -> Any) {
         CoroutineScope(Dispatchers.IO).launch {
             callback(locDao.getLatestLocations(laterThan.time))
         }
     }
 
-    fun addLocation(loc: Loc, callback: (Loc) -> Any) {
+    fun addLocation(loc: LocationEntity, callback: (LocationEntity) -> Any) {
         CoroutineScope(Dispatchers.IO).launch {
             locDao.insert(loc)
             callback(loc)
