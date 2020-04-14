@@ -70,7 +70,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         ApiClient.APIRepository.locationAndTimestamps.observe(this, androidx.lifecycle.Observer<LocationAndTimestampData> { ltData ->
-
                 addHeatMap(ltData.data.map {
                     val cell = S2CellId.fromToken(it.cell_token).toLatLng()
                     LatLng(cell.latDegrees(), cell.lngDegrees())
@@ -79,7 +78,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 if(location != null) {
                     userLatLng = LatLng(location.latitude, location.longitude)
-                    mMap.addMarker(MarkerOptions().position(userLatLng).title("User Location"))
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(userLatLng))
                     mMap.setMyLocationEnabled(true)
                     Log.d("Location", "User Lat Long:" + userLatLng.toString())
@@ -97,6 +95,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun addHeatMap(list: List<LatLng>) {
+        Log.d("LIST",list.toString())
+        if(list.isEmpty()){
+            Log.d("TEST"," list empty")
+            return
+        }
         heatMapProvider = HeatmapTileProvider.Builder()
             .data(list)
             .build()
