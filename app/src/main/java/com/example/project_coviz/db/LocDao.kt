@@ -15,6 +15,9 @@ interface LocDao {
     @Delete
     fun delete(loc: LocationEntity)
 
+    @Update
+    fun update(loc: LocationEntity)
+
     @Query("SELECT * FROM locations WHERE timestamp > :laterThan")
     fun getLatestLocations(laterThan: Long): LiveData<List<LocationEntity>>
 

@@ -72,6 +72,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         ApiClient.APIRepository.locationAndTimestamps.observe(this, androidx.lifecycle.Observer<LocationAndTimestampData> { ltData ->
                 addHeatMap(ltData.data.map {
                     val cell = S2CellId.fromToken(it.cell_token).toLatLng()
+                    Log.d("LATLNG","Lat: "+ cell.latDegrees()+" Long: " +cell.lngDegrees())
                     LatLng(cell.latDegrees(), cell.lngDegrees())
                 })
                 val location = LatestLocation.getLatestLocation()
