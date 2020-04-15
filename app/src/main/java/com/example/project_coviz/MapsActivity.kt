@@ -1,20 +1,14 @@
 package com.example.project_coviz
 
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
-import android.os.Looper
-import android.provider.Settings
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.Toolbar
 import com.example.project_coviz.api.ApiClient
-import com.example.project_coviz.api.ApiRepository
 import com.example.project_coviz.api.LocationAndTimestampData
 import com.example.project_coviz.s2.S2CellId
 import com.google.android.gms.location.*
@@ -23,10 +17,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.TileOverlay
 import com.google.android.gms.maps.model.TileOverlayOptions
 import com.google.maps.android.heatmaps.HeatmapTileProvider
+import kotlinx.android.synthetic.main.activity_maps.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -34,6 +28,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var heatMapProvider : HeatmapTileProvider
     private lateinit var heatMapOverlay: TileOverlay
+    private lateinit var toolBar: Toolbar
     var PERMISSION_ID: Int = 45
     lateinit var userLatLng: LatLng
 
@@ -46,7 +41,26 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mapFragment.getMapAsync(this)
 
+        toolBar = my_toolbar
+        setSupportActionBar(my_toolbar)
+
+
 //        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+         var menuInflater : MenuInflater = getMenuInflater()
+        menuInflater.inflate(R.menu.map_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.settings -> Toast.makeText(this, "You selected settings!", Toast.LENGTH_LONG).show()
+            R.id.resources -> Toast.makeText(this, "You selected resources!", Toast.LENGTH_LONG).show()
+            else -> Toast.makeText(this, "You must have clicked on the main menu!", Toast.LENGTH_LONG).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onResume() {
