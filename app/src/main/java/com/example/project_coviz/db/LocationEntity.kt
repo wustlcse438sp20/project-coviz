@@ -11,7 +11,7 @@ data class LocationEntity (
     @ColumnInfo(name = "timestamp")
     val time: Long,
     @ColumnInfo(name = "S2_cell_id")
-    val cellId: String,
+    val cell_token: String,
     @ColumnInfo(name = "notified", defaultValue = "false")
     var notified: Boolean
 )

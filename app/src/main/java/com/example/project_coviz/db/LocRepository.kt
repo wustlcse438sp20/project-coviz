@@ -15,6 +15,13 @@ class LocRepository(private val locDao: LocDao) {
         }
     }
 
+    fun updateLocation(loc: LocationEntity, callback: (LocationEntity) -> Any) {
+        CoroutineScope(Dispatchers.IO).launch {
+            locDao.update(loc)
+            callback(loc)
+        }
+    }
+
     fun getLatestLocations(laterThan: java.util.Date, callback: (LiveData<List<LocationEntity>>) -> Any) {
         CoroutineScope(Dispatchers.IO).launch {
             callback(locDao.getLatestLocations(laterThan.time))
