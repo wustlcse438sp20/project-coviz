@@ -1,22 +1,22 @@
 <resources>
     <string name="app_name">project-coviz</string>
     <string name="title_activity_maps">COVID-19 Visualizer</string>
-    <string name="cdc_org">Centers for Disease Control and Prevention</string>
-    <string name="google_org">Google</string>
-    <string name="idsa_org">Infectious Diseases Society of America</string>
-    <string name="aha_org">American Heart Association</string>
-    <string name="cmi_org">Child Mind Institute</string>
-    <string name="mha_org">Mental Health America</string>
-    <string name="cdc_howto">CDC | How to Protect Yourself &amp; Others</string>
-    <string name="cdc_ifsick">CDC | What to Do If You Are Sick</string>
-    <string name="cdc_symptoms">CDC | Symptoms of Coronavirus</string>
-    <string name="cdc_prevent">CDC | Prevent Getting Sick</string>
-    <string name="cdc_faq">CDC | Frequently Asked Questions</string>
-    <string name="google_title">Google | COVID-19 Information and Resources</string>
-    <string name="idsa_title">IDSA | COVID-19 Resource Center</string>
-    <string name="aha_title">AHA | COVID-19 Resources</string>
-    <string name="cmi_title">CMI | COVID-19 Resources for Parents</string>
-    <string name="mha_title">MHA | Mental Health And COVID-19 – Information And Resources</string>
+    <string name="cdc_org"><a href="https://cdc.gov">Centers for Disease Control and Prevention</a></string>
+    <string name="google_org"><a href="https://google.com">Google</a></string>
+    <string name="idsa_org"><a href="https://www.idsociety.org/">Infectious Diseases Society of America</a></string>
+    <string name="aha_org"><a href="https://www.heart.org/">American Heart Association</a></string>
+    <string name="cmi_org"><a href="https://childmind.org/">Child Mind Institute</a></string>
+    <string name="mha_org"><a href="https://www.mhanational.org/">Mental Health America</a></string>
+    <string name="cdc_howto"><a href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html">CDC | How to Protect Yourself &amp; Others</a></string>
+    <string name="cdc_ifsick"><a href="https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/steps-when-sick.html">CDC | What to Do If You Are Sick</a></string>
+    <string name="cdc_symptoms"><a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html">CDC | Symptoms of Coronavirus</a></string>
+    <string name="cdc_prevent"><a href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/index.html">CDC | Prevent Getting Sick</a></string>
+    <string name="cdc_faq"><a href="https://www.cdc.gov/coronavirus/2019-ncov/faq.html">CDC | Frequently Asked Questions</a></string>
+    <string name="google_title"><a href="https://www.google.com/covid19/">Google | COVID-19 Information and Resources</a></string>
+    <string name="idsa_title"><a href="https://www.idsociety.org/public-health/COVID-19-Resource-Center/">IDSA | COVID-19 Resource Center</a></string>
+    <string name="aha_title"><a href="https://www.heart.org/en/coronavirus/coronavirus-covid-19-resources">AHA | COVID-19 Resources</a></string>
+    <string name="cmi_title"><a href="https://childmind.org/coping-during-covid-19-resources-for-parents/">CMI | COVID-19 Resources for Parents</a></string>
+    <string name="mha_title"><a href="https://mhanational.org/covid19">MHA | Mental Health And COVID-19 – Information And Resources</a></string>
     <string name="cdc_index_url">https://www.cdc.gov/coronavirus/2019-nCoV/index.html</string>
     <string name="cdc_howto_url">https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html</string>
     <string name="cdc_ifsick_url">https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/steps-when-sick.html</string>

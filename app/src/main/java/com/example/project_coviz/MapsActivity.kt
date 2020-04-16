@@ -36,8 +36,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var heatMapOverlay: TileOverlay
     private lateinit var toolBar: Toolbar
     private lateinit var fragContainer: FrameLayout
-    private lateinit var settingsContainer: LinearLayout
-    private lateinit var resourcesContainer: LinearLayout
     var PERMISSION_ID: Int = 45
     lateinit var userLatLng: LatLng
 
@@ -73,7 +71,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             else -> "Whoops"
         }
         if (getSupportFragmentManager().findFragmentByTag(selection)?.isVisible() ?: false) {
-            Toast.makeText(this, "Fragment already visible, exiting.", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this, "Fragment already visible, exiting.", Toast.LENGTH_LONG).show()
             return false
         }
 
