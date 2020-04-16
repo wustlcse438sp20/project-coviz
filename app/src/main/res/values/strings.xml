@@ -1,4 +1,31 @@
 <resources>
     <string name="app_name">project-coviz</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">COVID-19 Visualizer</string>
+    <string name="cdc_org">Centers for Disease Control and Prevention</string>
+    <string name="google_org">Google</string>
+    <string name="idsa_org">Infectious Diseases Society of America</string>
+    <string name="aha_org">American Heart Association</string>
+    <string name="cmi_org">Child Mind Institute</string>
+    <string name="mha_org">Mental Health America</string>
+    <string name="cdc_howto">CDC | How to Protect Yourself &amp; Others</string>
+    <string name="cdc_ifsick">CDC | What to Do If You Are Sick</string>
+    <string name="cdc_symptoms">CDC | Symptoms of Coronavirus</string>
+    <string name="cdc_prevent">CDC | Prevent Getting Sick</string>
+    <string name="cdc_faq">CDC | Frequently Asked Questions</string>
+    <string name="google_title">Google | COVID-19 Information and Resources</string>
+    <string name="idsa_title">IDSA | COVID-19 Resource Center</string>
+    <string name="aha_title">AHA | COVID-19 Resources</string>
+    <string name="cmi_title">CMI | COVID-19 Resources for Parents</string>
+    <string name="mha_title">MHA | Mental Health And COVID-19 – Information And Resources</string>
+    <string name="cdc_index_url">https://www.cdc.gov/coronavirus/2019-nCoV/index.html</string>
+    <string name="cdc_howto_url">https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html</string>
+    <string name="cdc_ifsick_url">https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/steps-when-sick.html</string>
+    <string name="cdc_symptoms_url">https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html</string>
+    <string name="cdc_prevent_url">https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/index.html</string>
+    <string name="cdc_faq_url">https://www.cdc.gov/coronavirus/2019-ncov/faq.html</string>
+    <string name="google_url">https://www.google.com/covid19/</string>
+    <string name="idsa_url">https://www.idsociety.org/public-health/COVID-19-Resource-Center/</string>
+    <string name="aha_url">https://www.heart.org/en/coronavirus/coronavirus-covid-19-resources</string>
+    <string name="cmi_url">https://childmind.org/coping-during-covid-19-resources-for-parents/</string>
+    <string name="mha_url">https://mhanational.org/covid19</string>
 </resources>
