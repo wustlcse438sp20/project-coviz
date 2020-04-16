@@ -54,12 +54,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         fragContainer = frag_container
 
-//        settingsContainer.visibility = View.INVISIBLE
-//        resourcesContainer.visibility = View.VISIBLE
-
-
-
-
 //        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
@@ -72,28 +66,31 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         //Check if the Fragment is already visible and do nothing if so
-        var selection: Int = when (item.itemId) {
-            R.id.map-> R.id.map
-            R.id.settings -> 0
-            R.id.resources ->  R.id.resources
-            else -> 0
+        var selection: String = when (item.itemId) {
+            R.id.menuItemMap-> "mapFragment"
+            R.id.menuItemSettings -> "settingsFragment"
+            R.id.menuItemResources ->  "resourcesFragment"
+            else -> "Whoops"
         }
-        if (getSupportFragmentManager().findFragmentById(selection)?.isVisible() ?: false) return false
+        if (getSupportFragmentManager().findFragmentByTag(selection)?.isVisible() ?: false) {
+            Toast.makeText(this, "Fragment already visible, exiting.", Toast.LENGTH_LONG).show()
+            return false
+        }
 
         when (item.itemId) {
-            R.id.map -> {
+            R.id.menuItemMap -> {
                 Toast.makeText(this, "You selected Maps!", Toast.LENGTH_LONG).show()
-                supportFragmentManager.beginTransaction().replace(R.id.frag_container, mapFragment).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.frag_container, mapFragment,"mapFragment").commit()
             }
-            R.id.settings -> {
+            R.id.menuItemSettings -> {
                 Toast.makeText(this, "You selected settings!", Toast.LENGTH_LONG).show()
             }
-            R.id.resources -> {
+            R.id.menuItemResources -> {
                 Toast.makeText(this, "You selected resources!", Toast.LENGTH_LONG).show()
                 fragContainer?.removeAllViews()
                 val fragment = ResourcesFragment()
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frag_container, fragment)
+                transaction.replace(R.id.frag_container, fragment,"resourcesFragment")
                 transaction.commit()
             }
             else -> return false
