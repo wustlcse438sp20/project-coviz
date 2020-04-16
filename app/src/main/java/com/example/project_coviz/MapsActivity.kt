@@ -5,11 +5,16 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import com.example.project_coviz.api.ApiClient
 import com.example.project_coviz.api.LocationAndTimestampData
+import com.example.project_coviz.fragments.ResourcesFragment
 import com.example.project_coviz.s2.S2CellId
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -25,10 +30,14 @@ import kotlinx.android.synthetic.main.activity_maps.*
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+    private lateinit var mapFragment: SupportMapFragment
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var heatMapProvider : HeatmapTileProvider
     private lateinit var heatMapOverlay: TileOverlay
     private lateinit var toolBar: Toolbar
+    private lateinit var fragContainer: FrameLayout
+    private lateinit var settingsContainer: LinearLayout
+    private lateinit var resourcesContainer: LinearLayout
     var PERMISSION_ID: Int = 45
     lateinit var userLatLng: LatLng
 
@@ -36,13 +45,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
 
         mapFragment.getMapAsync(this)
 
         toolBar = my_toolbar
         setSupportActionBar(my_toolbar)
+
+        fragContainer = frag_container
+
+//        settingsContainer.visibility = View.INVISIBLE
+//        resourcesContainer.visibility = View.VISIBLE
+
+
 
 
 //        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -55,13 +70,38 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        //Check if the Fragment is already visible and do nothing if so
+        var selection: Int = when (item.itemId) {
+            R.id.map-> R.id.map
+            R.id.settings -> 0
+            R.id.resources ->  R.id.resources
+            else -> 0
+        }
+        if (getSupportFragmentManager().findFragmentById(selection)?.isVisible() ?: false) return false
+
         when (item.itemId) {
-            R.id.settings -> Toast.makeText(this, "You selected settings!", Toast.LENGTH_LONG).show()
-            R.id.resources -> Toast.makeText(this, "You selected resources!", Toast.LENGTH_LONG).show()
-            else -> Toast.makeText(this, "You must have clicked on the main menu!", Toast.LENGTH_LONG).show()
+            R.id.map -> {
+                Toast.makeText(this, "You selected Maps!", Toast.LENGTH_LONG).show()
+                supportFragmentManager.beginTransaction().replace(R.id.frag_container, mapFragment).commit()
+            }
+            R.id.settings -> {
+                Toast.makeText(this, "You selected settings!", Toast.LENGTH_LONG).show()
+            }
+            R.id.resources -> {
+                Toast.makeText(this, "You selected resources!", Toast.LENGTH_LONG).show()
+                fragContainer?.removeAllViews()
+                val fragment = ResourcesFragment()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frag_container, fragment)
+                transaction.commit()
+            }
+            else -> return false
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 
     override fun onResume() {
         super.onResume()

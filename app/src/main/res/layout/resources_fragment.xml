@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/resources_container"
+    android:orientation="vertical"
+    tools:context=".MapsActivity">
+s
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:id="@+id/resources_table"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:id="@+id/cdc_LL"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/space_small">
+
+                    <ImageView
+                        android:id="@+id/cdc_IV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cdc_small"
+                        android:layout_margin="@dimen/space_small"
+                        android:layout_gravity="center_vertical"></ImageView>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/cdc_org_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cdc_org"
+                            android:layout_marginBottom="@dimen/space_large"
+                            android:textSize="@dimen/subhead_text"></TextView>
+
+                        <TextView
+                            android:id="@+id/cdc_howto_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cdc_howto"
+                            android:layout_marginBottom="@dimen/space_large"></TextView>
+
+                        <TextView
+                            android:id="@+id/cdc_ifsick_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cdc_ifsick"
+                            android:layout_marginBottom="@dimen/space_large"></TextView>
+
+                        <TextView
+                            android:id="@+id/cdc_symptoms_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cdc_symptoms"
+                            android:layout_marginBottom="@dimen/space_large"></TextView>
+
+                        <TextView
+                            android:id="@+id/cdc_prevent_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cdc_prevent"
+                            android:layout_marginBottom="@dimen/space_large"></TextView>
+
+                        <TextView
+                            android:id="@+id/cdc_faq_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cdc_faq"
+                            android:layout_marginBottom="@dimen/space_large"></TextView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/google_LL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/space_small">
+                    <ImageView
+                        android:id="@+id/google_IV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/google_small"
+                        android:layout_margin="@dimen/space_small"></ImageView>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/google_org_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/google_org"
+                        android:layout_marginBottom="@dimen/space_large"
+                        android:textSize="@dimen/subhead_text"></TextView>
+
+                    <TextView
+                        android:id="@+id/google_r_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/google_title"
+                        android:layout_marginBottom="@dimen/space_large"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/body_text"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/idsa_LL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/space_small">
+                    <ImageView
+                        android:id="@+id/idsa_IV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/idsa_small"
+                        android:layout_margin="@dimen/space_small"
+                        android:layout_gravity="center_vertical"></ImageView>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/idsa_org_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/idsa_org"
+                        android:layout_marginBottom="@dimen/space_large"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/subhead_text"></TextView>
+
+                    <TextView
+                        android:id="@+id/idsa_r_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/idsa_title"
+                        android:layout_marginBottom="@dimen/space_large"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/body_text"></TextView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/aha_LL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/space_small">
+                    <ImageView
+                        android:id="@+id/aha_IV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/aha_small"
+                        android:layout_margin="@dimen/space_small"
+                        android:layout_gravity="center_vertical"></ImageView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/aha_org_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aha_org"
+                        android:layout_marginBottom="@dimen/space_large"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/subhead_text"></TextView>
+                    <TextView
+                        android:id="@+id/aha_r_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aha_title"
+                        android:layout_marginBottom="@dimen/space_large"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/body_text"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cmi_LL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/space_small">
+                    <ImageView
+                        android:id="@+id/cmi_IV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cmi_small"
+                        android:layout_margin="@dimen/space_small"></ImageView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/cmi_org_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cmi_org"
+                            android:layout_marginBottom="@dimen/space_large"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/subhead_text"></TextView>
+
+                        <TextView
+                            android:id="@+id/cmi_r_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cmi_title"
+                            android:layout_marginBottom="@dimen/space_large"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/body_text"></TextView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mha_LL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/space_small">
+                    <ImageView
+                        android:id="@+id/mha_IV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mha_small"
+                        android:layout_margin="@dimen/space_small"></ImageView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/mha_org_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mha_org"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/subhead_text"></TextView>
+
+                        <TextView
+                            android:id="@+id/mha_r_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mha_title"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/body_text"></TextView>
+                    </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+
+</LinearLayout>
