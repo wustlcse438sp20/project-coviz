@@ -29,29 +29,38 @@ class DisclosureFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         disclosureDirections.setMovementMethod(LinkMovementMethod.getInstance())
         disclosureSubmitButton.setOnClickListener {
-            val disclose: Boolean = disclosureToggleSwitch.isActivated
-            val date = LocalDate.of(
-                disclosureDatePicker.year,
-                disclosureDatePicker.month+1,
-                disclosureDatePicker.dayOfMonth
-            )
-            val minDate = LocalDate.of(2019, 12, 1)
-            val today = LocalDate.now()
-            if (!disclose) {
-                Toast.makeText(it.context, "To disclose your own COVID-19 exposure you must toggle the switch, first.", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-            if(date.isAfter(today)) {
-                Toast.makeText(it.context, "Date is in the future.", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-            if(date.isBefore(minDate)) {
-                Toast.makeText(it.context, "Date appears to predate COVID-19.", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
+            submitDisclosure()
+        }
+    }
+
+    private fun submitDisclosure() {
+        var disclose: Boolean = disclosureToggleSwitch.isChecked
+        val date = LocalDate.of(
+            disclosureDatePicker.year,
+            disclosureDatePicker.month + 1,
+            disclosureDatePicker.dayOfMonth
+        )
+        val minDate = LocalDate.of(2019, 12, 1)
+        val today = LocalDate.now()
+        if (!disclose) {
+            Toast.makeText(
+                this.context,
+                "To disclose your own COVID-19 exposure you must toggle the switch, first.",
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+        if (date.isAfter(today)) {
+            Toast.makeText(this.context, "Date is in the future.", Toast.LENGTH_LONG).show()
+            return
+        }
+        if (date.isBefore(minDate)) {
+            Toast.makeText(this.context,"Date appears to predate COVID-19.", Toast.LENGTH_LONG)
+                .show()
+            return
+
 
         }
-
-
     }
+
 }
