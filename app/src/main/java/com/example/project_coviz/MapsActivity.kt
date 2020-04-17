@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.project_coviz.api.ApiClient
 import com.example.project_coviz.api.LocationAndTimestampData
+import com.example.project_coviz.fragments.DisclosureFragment
 import com.example.project_coviz.fragments.ResourcesFragment
 import com.example.project_coviz.s2.S2CellId
 import com.google.android.gms.location.*
@@ -65,8 +66,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         //Check if the Fragment is already visible and do nothing if so
         var selection: String = when (item.itemId) {
-            R.id.menuItemMap-> "mapFragment"
             R.id.menuItemSettings -> "settingsFragment"
+            R.id.menuItemMap-> "mapFragment"
+            R.id.menuItemDisclosure -> "disclosureFragment"
             R.id.menuItemResources ->  "resourcesFragment"
             else -> "Whoops"
         }
@@ -76,13 +78,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         when (item.itemId) {
+            R.id.menuItemSettings -> {
+                Toast.makeText(this, "You selected settings!", Toast.LENGTH_LONG).show()
+            }
             R.id.menuItemMap -> {
                 Toast.makeText(this, "You selected Maps!", Toast.LENGTH_LONG).show()
                 supportFragmentManager.beginTransaction().replace(R.id.frag_container, mapFragment,"mapFragment").commit()
             }
-            R.id.menuItemSettings -> {
-                Toast.makeText(this, "You selected settings!", Toast.LENGTH_LONG).show()
+            R.id.menuItemDisclosure -> {
+                Toast.makeText(this, "You selected Disclosure!", Toast.LENGTH_LONG).show()
+                fragContainer?.removeAllViews()
+                val fragment = DisclosureFragment()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frag_container, fragment,"disclosureFragment")
+                transaction.commit()
             }
+
             R.id.menuItemResources -> {
                 Toast.makeText(this, "You selected resources!", Toast.LENGTH_LONG).show()
                 fragContainer?.removeAllViews()

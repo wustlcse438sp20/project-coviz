@@ -6,7 +6,7 @@
     android:id="@+id/resources_container"
     android:orientation="vertical"
     tools:context=".MapsActivity">
-s
+
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,6 +19,12 @@ s
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/resources_title"
+                    android:textSize="@dimen/mainhead_text"
+                    android:textAlignment="center"></TextView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"

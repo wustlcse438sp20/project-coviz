@@ -12,6 +12,13 @@
         android:icon="@drawable/menu_icon">
 
         <menu>
+
+            <item
+                android:id="@+id/menuItemSettings"
+                android:title="Settings"
+                app:showAsAction="ifRoom"
+                android:icon="@drawable/settings"/>
+
             <item
                 android:id="@+id/menuItemMap"
                 android:title="Map"
@@ -19,10 +26,11 @@
                 android:icon="@drawable/map_icon"/>
 
             <item
-                android:id="@+id/menuItemSettings"
-                android:title="Settings"
+                android:id="@+id/menuItemDisclosure"
+                android:title="Self-Disclosure Tool"
                 app:showAsAction="ifRoom"
-                android:icon="@drawable/settings"/>
+                android:icon="@drawable/disclosure_icon"/>
+
             <item
                 android:id="@+id/menuItemResources"
                 android:title="Resources"

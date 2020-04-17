@@ -5,4 +5,6 @@
     <dimen name="body_text">16sp</dimen>
     <dimen name="subhead_text">20sp</dimen>
     <dimen name="mainhead_text">30sp</dimen>
+    <dimen name="covid_height">176dp</dimen>
+    <dimen name="disc_width">220dp</dimen>
 </resources>
