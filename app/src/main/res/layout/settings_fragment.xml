@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settings_container"
+    android:orientation="vertical"
+    tools:context=".MapsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="left"
+        android:id="@+id/settingsScrollView"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_title"
+                android:textSize="@dimen/mainhead_text"
+                android:textAlignment="center"
+                android:layout_margin="@dimen/space_large"></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/space_large">
+
+                <TextView
+                    android:id="@+id/settings_hours_TV"
+                    android:layout_width="@dimen/settings_width"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_hours"
+                    android:textSize="@dimen/body_text"
+                    android:textStyle="bold"
+                    android:textAlignment="viewStart"
+                    android:layout_margin="@dimen/space_small"></TextView>
+
+            <EditText
+                android:id="@+id/settingsHoursEditText"
+                android:layout_width="@dimen/settings_edit_text"
+                android:layout_height="wrap_content"
+                android:inputType="number"></EditText>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/space_large"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/settingsSubmitButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    android:layout_gravity="center"></Button>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

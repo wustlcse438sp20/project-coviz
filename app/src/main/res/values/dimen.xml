@@ -7,4 +7,6 @@
     <dimen name="mainhead_text">30sp</dimen>
     <dimen name="covid_height">176dp</dimen>
     <dimen name="disc_width">220dp</dimen>
+    <dimen name="settings_width">300dp</dimen>
+    <dimen name="settings_edit_text">40dp</dimen>
 </resources>
