@@ -7,7 +7,7 @@
     <string name="disclosure_toggle">I have been medically diagnosed with COVID-19:</string>
     <string name="disclosure_date">The date when I first exhibited COVID-19 symptoms:</string>
     <string name="settings_title">Settings</string>
-    <string name="settings_hours">Time Range of COVID-19 Infection Activity (Hours)</string>
+    <string name="settings_hours">Time Range of Past COVID-19 Infection Activity to Display on Heatmap (Hours)</string>
     <string name="cdc_org"><a href="https://cdc.gov">Centers for Disease Control and Prevention</a></string>
     <string name="google_org"><a href="https://google.com">Google</a></string>
     <string name="idsa_org"><a href="https://www.idsociety.org/">Infectious Diseases Society of America</a></string>

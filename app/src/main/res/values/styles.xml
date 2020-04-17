@@ -8,4 +8,29 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ButtonStyle">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@color/colorCool</item>
+        <item name="android:fontFamily">@font/gotufamily</item>
+    </style>
+
+    <style name="PrimaryStyle">
+        <item name="android:fontFamily">@font/gotufamily</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="HeadingStyle" parent="@style/PrimaryStyle">
+        <item name="android:textSize">@dimen/mainhead_text</item>
+    </style>
+
+    <style name="SubheadStyle" parent="@style/PrimaryStyle">
+        <item name="android:textSize">@dimen/subhead_text</item>
+    </style>
+
+    <style name="BodyStyle" parent="@style/PrimaryStyle">
+        <item name="android:textSize">@dimen/body_text</item>
+    </style>
+
 </resources>

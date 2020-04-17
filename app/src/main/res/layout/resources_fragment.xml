@@ -20,10 +20,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    style="@style/HeadingStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/resources_title"
-                    android:textSize="@dimen/mainhead_text"
                     android:textAlignment="center"></TextView>
 
                 <LinearLayout
@@ -48,52 +48,52 @@
 
                         <TextView
                             android:id="@+id/cdc_org_TV"
-                            
+                            style="@style/SubheadStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cdc_org"
                             android:layout_marginBottom="@dimen/space_large"
-                            android:textSize="@dimen/subhead_text"></TextView>
+                            ></TextView>
 
                         <TextView
                             android:id="@+id/cdc_howto_TV"
-                            
+                            style="@style/BodyStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cdc_howto"
-                            android:layout_marginBottom="@dimen/space_large"></TextView>
+                            ></TextView>
 
                         <TextView
                             android:id="@+id/cdc_ifsick_TV"
-                            
+                            style="@style/BodyStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cdc_ifsick"
-                            android:layout_marginBottom="@dimen/space_large"></TextView>
+                            ></TextView>
 
                         <TextView
                             android:id="@+id/cdc_symptoms_TV"
-                            
+                            style="@style/BodyStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cdc_symptoms"
-                            android:layout_marginBottom="@dimen/space_large"></TextView>
+                            ></TextView>
 
                         <TextView
                             android:id="@+id/cdc_prevent_TV"
-                            
+                            style="@style/BodyStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cdc_prevent"
-                            android:layout_marginBottom="@dimen/space_large"></TextView>
+                            ></TextView>
 
                         <TextView
                             android:id="@+id/cdc_faq_TV"
-                            
+                            style="@style/BodyStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cdc_faq"
-                            android:layout_marginBottom="@dimen/space_large"></TextView>
+                            ></TextView>
 
                     </LinearLayout>
 
@@ -119,22 +119,21 @@
                         android:layout_gravity="center_vertical">
                     <TextView
                         android:id="@+id/google_org_TV"
-                        
+                        style="@style/SubheadStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/google_org"
                         android:layout_marginBottom="@dimen/space_large"
-                        android:textSize="@dimen/subhead_text"></TextView>
+                        ></TextView>
 
                     <TextView
                         android:id="@+id/google_r_TV"
-                        
+                        style="@style/BodyStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/google_title"
-                        android:layout_marginBottom="@dimen/space_large"
                         android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/body_text"></TextView>
+                        ></TextView>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -148,7 +147,7 @@
                     android:layout_margin="@dimen/space_small">
                     <ImageView
                         android:id="@+id/idsa_IV"
-                        
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/idsa_small"
@@ -160,23 +159,22 @@
                         android:orientation="vertical">
                     <TextView
                         android:id="@+id/idsa_org_TV"
-                        
+                        style="@style/SubheadStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/idsa_org"
                         android:layout_marginBottom="@dimen/space_large"
                         android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/subhead_text"></TextView>
+                        ></TextView>
 
                     <TextView
                         android:id="@+id/idsa_r_TV"
-                        
+                        style="@style/BodyStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/idsa_title"
-                        android:layout_marginBottom="@dimen/space_large"
                         android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/body_text"></TextView>
+                        ></TextView>
 
                     </LinearLayout>
 
@@ -213,13 +211,13 @@
                         android:textSize="@dimen/subhead_text"></TextView>
                     <TextView
                         android:id="@+id/aha_r_TV"
-                        
+                        style="@style/BodyStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/aha_title"
-                        android:layout_marginBottom="@dimen/space_large"
+
                         android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/body_text"></TextView>
+                       ></TextView>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -246,23 +244,22 @@
 
                         <TextView
                             android:id="@+id/cmi_org_TV"
-                            
+                            style="@style/SubheadStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cmi_org"
-                            android:layout_marginBottom="@dimen/space_large"
                             android:layout_gravity="center_vertical"
-                            android:textSize="@dimen/subhead_text"></TextView>
+                           ></TextView>
 
                         <TextView
                             android:id="@+id/cmi_r_TV"
-                            
+                            style="@style/BodyStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cmi_title"
                             android:layout_marginBottom="@dimen/space_large"
                             android:layout_gravity="center_vertical"
-                            android:textSize="@dimen/body_text"></TextView>
+                            ></TextView>
 
                     </LinearLayout>
 
@@ -290,21 +287,21 @@
 
                         <TextView
                             android:id="@+id/mha_org_TV"
-                            
+                            style="@style/SubheadStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/mha_org"
                             android:layout_gravity="center_vertical"
-                            android:textSize="@dimen/subhead_text"></TextView>
+                            ></TextView>
 
                         <TextView
                             android:id="@+id/mha_r_TV"
-                            
+                            style="@style/BodyStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/mha_title"
                             android:layout_gravity="center_vertical"
-                            android:textSize="@dimen/body_text"></TextView>
+                            ></TextView>
                     </LinearLayout>
 
 
