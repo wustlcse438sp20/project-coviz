@@ -1,15 +1,12 @@
 package com.example.project_coviz.db
 
-import androidx.lifecycle.LiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LocRepository(private val locDao: LocDao) {
 
-    val allLocations: LiveData<List<LocationEntity>> = locDao.getLocations()
-
-    fun getLocations(callback: (LiveData<List<LocationEntity>>) -> Any) {
+    fun getLocations(callback: (List<LocationEntity>) -> Any) {
         CoroutineScope(Dispatchers.IO).launch {
             callback(locDao.getLocations())
         }
@@ -22,7 +19,7 @@ class LocRepository(private val locDao: LocDao) {
         }
     }
 
-    fun getLatestLocations(laterThan: java.util.Date, callback: (LiveData<List<LocationEntity>>) -> Any) {
+    fun getLatestLocations(laterThan: java.util.Date, callback: (List<LocationEntity>) -> Any) {
         CoroutineScope(Dispatchers.IO).launch {
             callback(locDao.getLatestLocations(laterThan.time))
         }
@@ -32,6 +29,14 @@ class LocRepository(private val locDao: LocDao) {
         CoroutineScope(Dispatchers.IO).launch {
             locDao.insert(loc)
             callback(loc)
+        }
+    }
+
+    fun printLocations() {
+        CoroutineScope(Dispatchers.IO).launch {
+            for(loc in locDao.getLocations()) {
+                println("WE GOT ONE: ${loc}")
+            }
         }
     }
 

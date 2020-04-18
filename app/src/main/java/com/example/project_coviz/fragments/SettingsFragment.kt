@@ -1,16 +1,18 @@
 package com.example.project_coviz.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.project_coviz.R
-import kotlinx.android.synthetic.main.resources_fragment.*
+import com.example.project_coviz.Settings
+import com.example.project_coviz.UnifiedLocationTrackService
 import kotlinx.android.synthetic.main.settings_fragment.*
+import kotlinx.android.synthetic.main.settings_fragment.enableNotificationsSwitch
+import kotlinx.android.synthetic.main.settings_fragment.stopTrackingButton
 
 
 class SettingsFragment : Fragment() {
@@ -32,6 +34,14 @@ class SettingsFragment : Fragment() {
 
         settingsSubmitButton.setOnClickListener {
             submit()
+        }
+
+        enableNotificationsSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+                Settings.notify = isChecked
+        }
+
+        stopTrackingButton.setOnClickListener {
+            this.activity?.stopService(Intent(this.activity, UnifiedLocationTrackService::class.java))
         }
     }
 
@@ -59,6 +69,8 @@ class SettingsFragment : Fragment() {
             ).show()
             return
         }
+
+        Settings.HOURS_OF_DATA = hours
 
     }
 }

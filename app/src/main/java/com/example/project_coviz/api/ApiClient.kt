@@ -2,9 +2,6 @@ package com.example.project_coviz.api
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.natpryce.konfig.ConfigurationProperties
-import com.natpryce.konfig.Key
-import com.natpryce.konfig.stringType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

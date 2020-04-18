@@ -103,7 +103,8 @@ class MainActivity : AppCompatActivity() {
         while(!checkPermissions()) {
             //pass
         }
-        startService(Intent(this, LocationTrackService::class.java))
+
+        startService(Intent(this, UnifiedLocationTrackService::class.java))
         startActivity(Intent(this, MapsActivity::class.java))
     }
 }

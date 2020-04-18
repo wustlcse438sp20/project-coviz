@@ -55,7 +55,4 @@ dependencies {
 
     //Moshi for type conversion
     implementation 'com.squareup.retrofit2:converter-moshi:2.6.0'
-
-    //config
-    implementation 'com.natpryce:konfig:1.6.10.0'
 }

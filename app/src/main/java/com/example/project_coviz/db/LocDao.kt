@@ -7,7 +7,7 @@ import androidx.room.*
 interface LocDao {
 
     @Query("SELECT * FROM locations")
-    fun getLocations(): LiveData<List<LocationEntity>>
+    fun getLocations(): List<LocationEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(loc: LocationEntity)
@@ -19,6 +19,6 @@ interface LocDao {
     fun update(loc: LocationEntity)
 
     @Query("SELECT * FROM locations WHERE timestamp > :laterThan")
-    fun getLatestLocations(laterThan: Long): LiveData<List<LocationEntity>>
+    fun getLatestLocations(laterThan: Long): List<LocationEntity>
 
 }

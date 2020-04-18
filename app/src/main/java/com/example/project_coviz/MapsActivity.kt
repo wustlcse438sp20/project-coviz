@@ -5,13 +5,9 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import com.example.project_coviz.api.ApiClient
 import com.example.project_coviz.api.LocationAndTimestampData
 import com.example.project_coviz.fragments.DisclosureFragment
@@ -38,7 +34,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var heatMapOverlay: TileOverlay
     private lateinit var toolBar: Toolbar
     private lateinit var fragContainer: FrameLayout
-    var PERMISSION_ID: Int = 45
     lateinit var userLatLng: LatLng
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +49,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         fragContainer = frag_container
 
-//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        if(this.intent.hasExtra("fragmentToStart")) {
+            when(this.intent.getStringExtra("fragmentToStart")) {
+                "settingsFragment" -> {
+                    fragContainer?.removeAllViews()
+                    val fragment = SettingsFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.frag_container, fragment,"settingsFragment")
+                    transaction.commit()
+                }
+                "disclosureFragment" -> {
+                    fragContainer?.removeAllViews()
+                    val fragment = DisclosureFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.frag_container, fragment,"disclosureFragment")
+                    transaction.commit()
+                }
+                "resourcesFragment" -> {
+                    fragContainer?.removeAllViews()
+                    val fragment = ResourcesFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.frag_container, fragment,"resourcesFragment")
+                    transaction.commit()
+                }
+            }
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -68,7 +88,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         //Check if the Fragment is already visible and do nothing if so
         var selection: String = when (item.itemId) {
             R.id.menuItemSettings -> "settingsFragment"
-            R.id.menuItemMap-> "mapFragment"
+            R.id.menuItemMap -> "mapFragment"
             R.id.menuItemDisclosure -> "disclosureFragment"
             R.id.menuItemResources ->  "resourcesFragment"
             else -> "Whoops"
@@ -112,10 +132,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onResume() {
         super.onResume()
-        val tok = LatestLocation.getLatestCellToken()
-        if(tok != null) {
-            ApiClient.APIRepository.updateTimestampsForCurrentLocation(tok)
-        }
+        moveUserToLocation()
     }
 
     /**
@@ -133,7 +150,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         ApiClient.APIRepository.locationAndTimestamps.observe(this, androidx.lifecycle.Observer<LocationAndTimestampData> { ltData ->
                 addHeatMap(ltData.data.map {
                     val cell = S2CellId.fromToken(it.cell_token).toLatLng()
-                    Log.d("LATLNG","Lat: "+ cell.latDegrees()+" Long: " +cell.lngDegrees())
+//                    Log.d("LATLNG","Lat: "+ cell.latDegrees()+" Long: " +cell.lngDegrees())
                     LatLng(cell.latDegrees(), cell.lngDegrees())
                 })
                 val location = LatestLocation.getLatestLocation()
@@ -141,7 +158,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 if(location != null) {
                     userLatLng = LatLng(location.latitude, location.longitude)
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(userLatLng))
-                    mMap.setMyLocationEnabled(true)
+                    mMap.setMyLocationEnabled(true);
                     Log.d("Location", "User Lat Long:" + userLatLng.toString())
                 }
 
@@ -157,9 +174,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun addHeatMap(list: List<LatLng>) {
-        Log.d("LIST",list.toString())
+//        Log.d("LIST",list.toString())
         if(list.isEmpty()){
-            Log.d("TEST"," list empty")
+            Log.d("DEBUG"," list empty")
             return
         }
         heatMapProvider = HeatmapTileProvider.Builder()
@@ -173,6 +190,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // TODO Get updated location data to update heatmap
         heatMapProvider.setData(data)
         heatMapOverlay.clearTileCache()
+    }
+
+    private fun moveUserToLocation() {
+        val tok = LatestLocation.getLatestCellToken()
+        if(tok != null) {
+            ApiClient.APIRepository.updateTimestampsForCurrentLocation(tok, Settings.HOURS_OF_DATA)
+        }
+        val location = LatestLocation.getLatestLocation()
+        if(location != null) {
+            userLatLng = LatLng(location.latitude, location.longitude)
+        }
+        if(this::mMap.isInitialized && this::userLatLng.isInitialized) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(userLatLng))
+            mMap.setMyLocationEnabled(true);
+            Log.d("Location", "User Lat Long:" + userLatLng.toString())
+        }
     }
 
 }

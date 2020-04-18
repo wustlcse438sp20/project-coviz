@@ -26,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_title"
-
                 android:textAlignment="center"
                 android:layout_margin="@dimen/space_large"></TextView>
 
@@ -42,7 +41,6 @@
                     android:layout_width="@dimen/settings_width"
                     android:layout_height="wrap_content"
                     android:text="@string/settings_hours"
-
                     android:textStyle="bold"
                     android:textAlignment="viewStart"
                     android:layout_margin="@dimen/space_small"></TextView>
@@ -70,6 +68,37 @@
                     android:layout_height="wrap_content"
                     android:text="Submit"
                     android:layout_gravity="center"></Button>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="16dp"
+                android:padding="5sp"
+                >
+
+            <Switch
+                android:id="@+id/enableNotificationsSwitch"
+                android:checked="true"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Enable Notifications   "
+                />
+
+            <Button
+                android:id="@+id/stopTrackingButton"
+                style="@style/ButtonStyle"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Stop Tracking"
+                />
+
             </LinearLayout>
 
         </LinearLayout>
