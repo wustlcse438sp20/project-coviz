@@ -16,6 +16,7 @@ import com.example.project_coviz.api.ApiClient
 import com.example.project_coviz.api.LocationAndTimestampData
 import com.example.project_coviz.fragments.DisclosureFragment
 import com.example.project_coviz.fragments.ResourcesFragment
+import com.example.project_coviz.fragments.SettingsFragment
 import com.example.project_coviz.s2.S2CellId
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -73,20 +74,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             else -> "Whoops"
         }
         if (getSupportFragmentManager().findFragmentByTag(selection)?.isVisible() ?: false) {
-            //Toast.makeText(this, "Fragment already visible, exiting.", Toast.LENGTH_LONG).show()
             return false
         }
 
         when (item.itemId) {
             R.id.menuItemSettings -> {
-                Toast.makeText(this, "You selected settings!", Toast.LENGTH_LONG).show()
+                fragContainer?.removeAllViews()
+                val fragment = SettingsFragment()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frag_container, fragment,"settingsFragment")
+                transaction.commit()
             }
             R.id.menuItemMap -> {
-                Toast.makeText(this, "You selected Maps!", Toast.LENGTH_LONG).show()
                 supportFragmentManager.beginTransaction().replace(R.id.frag_container, mapFragment,"mapFragment").commit()
             }
             R.id.menuItemDisclosure -> {
-                Toast.makeText(this, "You selected Disclosure!", Toast.LENGTH_LONG).show()
                 fragContainer?.removeAllViews()
                 val fragment = DisclosureFragment()
                 val transaction = supportFragmentManager.beginTransaction()
@@ -95,7 +97,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             R.id.menuItemResources -> {
-                Toast.makeText(this, "You selected resources!", Toast.LENGTH_LONG).show()
                 fragContainer?.removeAllViews()
                 val fragment = ResourcesFragment()
                 val transaction = supportFragmentManager.beginTransaction()
