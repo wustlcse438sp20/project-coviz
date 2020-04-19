@@ -30,7 +30,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Need to access current settings and set them:
-        settingsHoursEditText.setText("120")
+        settingsHoursEditText.setText(Settings.HOURS_OF_DATA.toString())
 
         settingsSubmitButton.setOnClickListener {
             submit()

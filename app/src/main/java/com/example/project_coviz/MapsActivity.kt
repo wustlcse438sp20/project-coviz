@@ -40,6 +40,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+
         mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
 
         mapFragment.getMapAsync(this)
@@ -106,7 +108,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 transaction.commit()
             }
             R.id.menuItemMap -> {
-                supportFragmentManager.beginTransaction().replace(R.id.frag_container, mapFragment,"mapFragment").commit()
+                finish();
+                startActivity(getIntent())
             }
             R.id.menuItemDisclosure -> {
                 fragContainer?.removeAllViews()
