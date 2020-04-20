@@ -31,6 +31,7 @@ class SettingsFragment : Fragment() {
 
         //Need to access current settings and set them:
         settingsHoursEditText.setText(Settings.HOURS_OF_DATA.toString())
+        enableNotificationsSwitch.setChecked(Settings.notify)
 
         settingsSubmitButton.setOnClickListener {
             submit()

@@ -3,7 +3,7 @@
     <string name="title_activity_maps">COVID-19 Visualizer</string>
     <string name="resources_title">Resources</string>
     <string name="disclosure_title">Self-Disclosure Tool</string>
-    <string name="disclosure_directions">Use this tool to help document the spread of COVID-19 and help others avoid areas of high infection. Disclosure is completely anonymous. Only disclose your own medically confirmed case of COVID-19, along with the date you first developed symptoms, such as a fever and cough, if known.  If you are currently sick, please follow the <a href="https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/steps-when-sick.html">guidance of the CDC.</a></string>
+    <string name="disclosure_directions">Use this tool to help document the spread of COVID-19 and help others avoid areas of high infection. Disclosure is completely anonymous. Only disclose your own medically confirmed case of COVID-19, along with the date you first developed symptoms, such as a fever and cough, if known.  Toggling this feature automatically disables notifications of nearby COVID-19 infections.  If you are currently sick, please follow the <a href="https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/steps-when-sick.html">guidance of the CDC.</a></string>
     <string name="disclosure_toggle">I have been medically diagnosed with COVID-19:</string>
     <string name="disclosure_date">The date when I first exhibited COVID-19 symptoms:</string>
     <string name="settings_title">Settings</string>

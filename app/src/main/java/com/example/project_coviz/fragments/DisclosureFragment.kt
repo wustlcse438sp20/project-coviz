@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.project_coviz.R
+import com.example.project_coviz.Settings
 import com.example.project_coviz.api.ApiClient
 import com.example.project_coviz.api.LocationAndTimestamp
 import com.example.project_coviz.api.LocationAndTimestampData
@@ -73,6 +74,9 @@ class DisclosureFragment : Fragment() {
                     }
             }
             disclosureToggleSwitch.setChecked(false)
+
+            //Prevent user from being bombarded withh notifications
+            Settings.notify = false
         }
 
 
