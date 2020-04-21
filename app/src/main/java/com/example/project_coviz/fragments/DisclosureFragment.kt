@@ -33,7 +33,19 @@ class DisclosureFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //Activate URL
         disclosureDirections.setMovementMethod(LinkMovementMethod.getInstance())
+
+        //Load values stored in Settings object
+        disclosureToggleSwitch.setChecked(Settings.disclosure)
+        if (Settings.disclosure) {
+            disclosureDatePicker.updateDate(
+                Settings.disclose_year,
+                Settings.disclose_month,
+                Settings.disclose_day)
+        }
+
         disclosureSubmitButton.setOnClickListener {
             val disclose: Boolean = disclosureToggleSwitch.isChecked
             val date = of(
@@ -56,6 +68,12 @@ class DisclosureFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            //Store values
+            Settings.disclosure = disclose
+            Settings.disclose_year = disclosureDatePicker.year
+            Settings.disclose_month = disclosureDatePicker.month
+            Settings.disclose_day = disclosureDatePicker.dayOfMonth
+
             //send the data
             val locationRepo = LocRepository(LocRoomDatabase.getDatabase(this.context!!).locDao())
             val laterThan = Date.from(date.atStartOfDay().atZone( ZoneId.systemDefault()).toInstant())
@@ -69,13 +87,13 @@ class DisclosureFragment : Fragment() {
                             )
                         )
                         this.activity?.runOnUiThread(
-                            { Toast.makeText(this.activity, "We have notified our servers. Feel better soon!", Toast.LENGTH_LONG).show() }
+                            { Toast.makeText(this.activity, "We have notified our servers. Thank you for helping others avoid exposure.", Toast.LENGTH_LONG).show() }
                         )
                     }
             }
-            disclosureToggleSwitch.setChecked(false)
 
-            //Prevent user from being bombarded withh notifications
+
+            //Turn off notifications
             Settings.notify = false
         }
 

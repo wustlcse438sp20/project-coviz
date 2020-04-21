@@ -37,6 +37,10 @@ class SettingsFragment : Fragment() {
             submit()
         }
 
+        if (Settings.disclosure) {
+            enableNotificationsSwitch.isEnabled = false
+        }
+
         enableNotificationsSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                 Settings.notify = isChecked
         }
