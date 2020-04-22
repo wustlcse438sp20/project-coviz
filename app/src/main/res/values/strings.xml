@@ -35,6 +35,7 @@
     <string name="aha_url">https://www.heart.org/en/coronavirus/coronavirus-covid-19-resources</string>
     <string name="cmi_url">https://childmind.org/coping-during-covid-19-resources-for-parents/</string>
     <string name="mha_url">https://mhanational.org/covid19</string>
+    <string name="prediction_title">Watchlist</string>
     <string name="disclosure_warning">Please confirm your disclosure of COVID-19 infection.  Because this App does not track user identities, this disclosure cannot be undone.  This will disable notifications of nearby infection activity.</string>
     <string name="disclosure_gratitude">We have notified our servers. Thank you for helping others avoid exposure.</string>
 </resources>
