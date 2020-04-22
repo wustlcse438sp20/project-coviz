@@ -121,6 +121,7 @@ class DisclosureFragment : Fragment() {
 
         disclosureToggleSwitch.isEnabled = false
         disclosureDatePicker.isEnabled = false
+        disclosureSubmitButton.isEnabled = false
         //Turn off notifications
         Settings.notify = false
     }
