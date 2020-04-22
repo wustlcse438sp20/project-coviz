@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project_coviz.MapsActivity
 import com.example.project_coviz.R
@@ -45,15 +46,19 @@ class PredictionFragment : Fragment() {
 
         val calendar: Calendar = Calendar.getInstance()
         calendar.add(Calendar.HOUR, -1 * Settings.HOURS_OF_DATA)
-        val date: Date = calendar.getTime()
+        val date: Date = calendar.time
         locationRepo = LocRepository(LocRoomDatabase.getDatabase(activity as MapsActivity).locDao())
         locationRepo.getLatestLocations(date) {
             for (userLocation in it) {
                 var casesLiveData: MutableLiveData<LocationAndTimestampData> = MutableLiveData()
+                casesLiveData.observe(activity as MapsActivity, Observer {
+                    watchlist.clear()
+                    for (case in casesLiveData.value!!.data) {
+                        watchlist.put(S2CellId.fromToken(case.cell_token).toLatLng(), 1)
+                    }
+                    adapter.notifyDataSetChanged()
+                })
                 ApiClient.APIRepository.getLocationAndTimestamps(casesLiveData, userLocation.cell_token)
-                for (case in casesLiveData.value!!.data) {
-                    watchlist.put(S2CellId.fromToken(case.cell_token).toLatLng(), 1)
-                }
             }
         }
 
