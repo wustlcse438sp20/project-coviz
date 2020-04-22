@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.project_coviz.api.ApiClient
 import com.example.project_coviz.api.LocationAndTimestampData
 import com.example.project_coviz.fragments.DisclosureFragment
+import com.example.project_coviz.fragments.PredictionFragment
 import com.example.project_coviz.fragments.ResourcesFragment
 import com.example.project_coviz.fragments.SettingsFragment
 import com.example.project_coviz.s2.S2CellId
@@ -93,6 +94,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             R.id.menuItemMap -> "mapFragment"
             R.id.menuItemDisclosure -> "disclosureFragment"
             R.id.menuItemResources ->  "resourcesFragment"
+            R.id.menuItemWatchlist -> "predictionFragment"
             else -> "Whoops"
         }
         if (getSupportFragmentManager().findFragmentByTag(selection)?.isVisible() ?: false) {
@@ -118,12 +120,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 transaction.replace(R.id.frag_container, fragment,"disclosureFragment")
                 transaction.commit()
             }
-
             R.id.menuItemResources -> {
                 fragContainer?.removeAllViews()
                 val fragment = ResourcesFragment()
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.frag_container, fragment,"resourcesFragment")
+                transaction.commit()
+            }
+            R.id.menuItemWatchlist -> {
+                fragContainer?.removeAllViews()
+                val fragment = PredictionFragment()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frag_container, fragment, "predictionFragment")
                 transaction.commit()
             }
             else -> return false
