@@ -47,20 +47,20 @@ class PredictionFragment : Fragment() {
         val calendar: Calendar = Calendar.getInstance()
         calendar.add(Calendar.HOUR, -1 * Settings.HOURS_OF_DATA)
         val date: Date = calendar.time
+        var casesLiveData: MutableLiveData<LocationAndTimestampData> = MutableLiveData()
         locationRepo = LocRepository(LocRoomDatabase.getDatabase(activity as MapsActivity).locDao())
-        locationRepo.getLatestLocations(date) {
-            for (userLocation in it) {
-                var casesLiveData: MutableLiveData<LocationAndTimestampData> = MutableLiveData()
-                casesLiveData.observe(activity as MapsActivity, Observer {
-                    watchlist.clear()
-                    for (case in casesLiveData.value!!.data) {
-                        watchlist.put(S2CellId.fromToken(case.cell_token).toLatLng(), 1)
-                    }
-                    adapter.notifyDataSetChanged()
-                })
-                ApiClient.APIRepository.getLocationAndTimestamps(casesLiveData, userLocation.cell_token)
+        casesLiveData.observe(activity as MapsActivity, Observer { cases ->
+            locationRepo.getLatestLocations(date) { locations ->
+                for (userLocation in locations) {
+                        watchlist.clear()
+                        for (case in casesLiveData.value!!.data) {
+                            watchlist.put(S2CellId.fromToken(case.cell_token).toLatLng(), 1)
+                        }
+                        adapter.notifyDataSetChanged()
+                    ApiClient.APIRepository.getLocationAndTimestamps(casesLiveData, userLocation.cell_token)
+                }
             }
-        }
+        })
 
         adapter = WatchlistAdapter(watchlist.toList())
 
