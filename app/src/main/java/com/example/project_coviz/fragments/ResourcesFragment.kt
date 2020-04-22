@@ -11,9 +11,11 @@ import com.example.project_coviz.R
 import kotlinx.android.synthetic.main.resources_fragment.*
 
 
-private lateinit var tv : ArrayList<TextView>
+
 
 class ResourcesFragment : Fragment() {
+
+    private lateinit var tv : ArrayList<TextView>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -40,8 +40,8 @@
             <item
                 android:id="@+id/menuItemWatchlist"
                 android:title="Watchlist"
-                app:showAsAction="ifRoom" />
-<!--                android:icon="@drawable/watchlist_icon"/> TODO: GET CHART ICON-->
+                app:showAsAction="ifRoom"
+                android:icon="@drawable/watchlist_icon"/>
 
         </menu>
 

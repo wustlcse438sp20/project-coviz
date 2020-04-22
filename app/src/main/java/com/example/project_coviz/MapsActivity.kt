@@ -75,6 +75,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     transaction.replace(R.id.frag_container, fragment,"resourcesFragment")
                     transaction.commit()
                 }
+                "predictionFragment" -> {
+                    fragContainer?.removeAllViews()
+                    val fragment = PredictionFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.frag_container, fragment,"predictionFragment")
+                    transaction.commit()
+                }
             }
         }
 
