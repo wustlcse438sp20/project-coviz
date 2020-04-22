@@ -48,6 +48,7 @@ class DisclosureFragment : Fragment() {
                 Settings.disclose_day)
             disclosureToggleSwitch.isEnabled = false
             disclosureDatePicker.isEnabled = false
+            disclosureSubmitButton.isEnabled = false
         }
 
         disclosureSubmitButton.setOnClickListener {
