@@ -18,7 +18,7 @@ object ApiClient {
     fun makeRetrofitService(): ApiInterface {
         return Retrofit.Builder()
             .baseUrl(base_url)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create().asLenient())
             .build().create(ApiInterface::class.java)
 
     }
