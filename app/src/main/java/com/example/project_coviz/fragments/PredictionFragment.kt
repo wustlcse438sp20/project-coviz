@@ -7,17 +7,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project_coviz.*
 import com.example.project_coviz.api.ApiClient
 import com.example.project_coviz.api.LocationAndTimestampData
 import com.example.project_coviz.db.LocRepository
+import com.example.project_coviz.s2.S2CellId
 import com.example.project_coviz.s2.S2LatLng
+import kotlinx.android.synthetic.main.prediction_fragment.*
 import kotlin.collections.HashMap
 
 class PredictionFragment : Fragment() {
 
     lateinit var adapter: WatchlistAdapter
-    lateinit var locationRepo: LocRepository
+    private var olderCases = MutableLiveData<LocationAndTimestampData>()
+    private var newerCases = MutableLiveData<LocationAndTimestampData>()
+    private var watchlist: HashMap<S2LatLng, Int> = HashMap()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,27 +34,37 @@ class PredictionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        newerCases.observe(this, Observer {
+            // count number of cases in each cell for each set and get top n cells that have highest change in cases
+            for (case in it.data) {
+                val caseLatLng = S2CellId.fromToken(case.cell_token).toLatLng()
+                if (watchlist.containsKey(caseLatLng)) {
+                    watchlist.put(caseLatLng, watchlist.get(caseLatLng)!! + 1)
+                } else {
+                    watchlist.put(caseLatLng, 1)
+                }
+            }
+            adapter.notifyDataSetChanged()
+        })
+        adapter = WatchlistAdapter(watchlist.toList())
+        highest_rise.adapter = adapter
+        highest_rise.layoutManager = LinearLayoutManager(this.context)
+
+//        olderCases.observe(this, Observer {
+            // call update on sencond live mutable data
+        ApiClient.APIRepository.getLocationAndTimestamps(newerCases,LatestLocation.getLatestCellToken()!!,Settings.WATCHLIST_HOUR)
+//    })
     }
 
     override fun onStart() {
         super.onStart()
 
-        var watchlist: HashMap<S2LatLng, Int> = HashMap()
-        var olderCases= MutableLiveData<LocationAndTimestampData>()
-        var newerCases= MutableLiveData<LocationAndTimestampData>()
         if(LatestLocation.getLatestCellToken() == null){
 
         }
         else{
             ApiClient.APIRepository.getLocationAndTimestamps(olderCases,LatestLocation.getLatestCellToken()!!,Settings.HOURS_OF_DATA)
-            olderCases.observe(this, Observer {
-                // call update on sencond live mutable data
-                ApiClient.APIRepository.getLocationAndTimestamps(newerCases,LatestLocation.getLatestCellToken()!!,Settings.WATCHLIST_HOUR)
-            })
-            newerCases.observe(this, Observer {
-                // count number of cases in each cell for each set and get top n cells that have highest change in cases
-
-            })
         }
 
 //        val calendar: Calendar = Calendar.getInstance()
