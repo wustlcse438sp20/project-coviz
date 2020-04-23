@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project_coviz.api.LocationAndTimestampData
 import com.example.project_coviz.s2.S2LatLng
-import com.google.android.gms.maps.model.LatLng
 
 class WatchlistViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.watchlist_item, parent, false)) {
@@ -26,16 +24,19 @@ class WatchlistViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
 }
 
-class WatchlistAdapter(private val locations: List<Pair<S2LatLng, Int>>) :
+class WatchlistAdapter(private val locations: Map<S2LatLng, Int>) :
         RecyclerView.Adapter<WatchlistViewHolder>() {
+
+    private lateinit var locationsList: List<Pair<S2LatLng, Int>>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : WatchlistViewHolder {
         val inflater = LayoutInflater.from(parent.context)
+        locationsList = locations.toList()
         return WatchlistViewHolder(inflater, parent)
     }
 
     override fun onBindViewHolder(holder: WatchlistViewHolder, position: Int) {
-        val cell: Pair<S2LatLng, Int> = locations[position]
+        val cell: Pair<S2LatLng, Int> = locationsList[position]
         holder.bind(cell)
     }
 

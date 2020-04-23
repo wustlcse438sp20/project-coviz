@@ -37,6 +37,7 @@ class PredictionFragment : Fragment() {
 
         newerCases.observe(this, Observer {
             // count number of cases in each cell for each set and get top n cells that have highest change in cases
+            watchlist.clear()
             for (case in it.data) {
                 val caseLatLng = S2CellId.fromToken(case.cell_token).toLatLng()
                 if (watchlist.containsKey(caseLatLng)) {
@@ -47,63 +48,28 @@ class PredictionFragment : Fragment() {
             }
             adapter.notifyDataSetChanged()
         })
-        adapter = WatchlistAdapter(watchlist.toList())
+        adapter = WatchlistAdapter(watchlist)
         highest_rise.adapter = adapter
         highest_rise.layoutManager = LinearLayoutManager(this.context)
 
-//        olderCases.observe(this, Observer {
-            // call update on sencond live mutable data
         ApiClient.APIRepository.getLocationAndTimestamps(newerCases,LatestLocation.getLatestCellToken()!!,Settings.WATCHLIST_HOUR)
-//    })
+
     }
 
     override fun onStart() {
         super.onStart()
 
-        if(LatestLocation.getLatestCellToken() == null){
-
+        if(LatestLocation.getLatestCellToken() != null) {
+            ApiClient.APIRepository.getLocationAndTimestamps(newerCases,LatestLocation.getLatestCellToken()!!,Settings.HOURS_OF_DATA)
         }
-        else{
-            ApiClient.APIRepository.getLocationAndTimestamps(olderCases,LatestLocation.getLatestCellToken()!!,Settings.HOURS_OF_DATA)
-        }
+    }
 
-//        val calendar: Calendar = Calendar.getInstance()
-//        calendar.add(Calendar.HOUR, -1 * Settings.HOURS_OF_DATA)
-//        val date: Date = calendar.time
-//        locationRepo = LocRepository(LocRoomDatabase.getDatabase(activity as MapsActivity).locDao())
-//        ApiClient.APIRepository.locationAndTimestamps.observe(this, androidx.lifecycle.Observer {
-//            var infectionLocations = it;
-//            locationRepo.getLatestLocations(date) { locations ->
-//                for (infectionLocation in infectionLocations.data) {
-//                    for (userLocation in locations) {
-//                        watchlist.clear()
-//                        var token = S2CellId.fromToken(userLocation.cell_token).toLatLng()
-//                        if (S2CellId.fromToken(infectionLocation.cell_token).intersects(
-//                                S2CellId.fromToken(
-//                                    userLocation.cell_token
-//                                )
-//                            )
-//                        ) {
-//                            if (watchlist.containsKey(token)) {
-//                                watchlist.put(token, watchlist.get(token)!! + 1)
-//                            } else {
-//                                watchlist.put(
-//                                    S2CellId.fromToken(userLocation.cell_token).toLatLng(),
-//                                    1
-//                                )
-//                            }
-//
-//                        }
-//                    }
-//                }
-//                adapter.notifyDataSetChanged()
-//            }
-//        })
-//        adapter = WatchlistAdapter(watchlist.toList())
-//
-//        highest_rise.adapter = adapter
-//
-//        highest_rise.layoutManager = LinearLayoutManager(this.context)
+    override fun onResume() {
+        super.onResume()
+
+        if(LatestLocation.getLatestCellToken() != null) {
+            ApiClient.APIRepository.getLocationAndTimestamps(newerCases,LatestLocation.getLatestCellToken()!!,Settings.HOURS_OF_DATA)
+        }
     }
 
 }

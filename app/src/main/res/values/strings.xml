@@ -38,4 +38,6 @@
     <string name="prediction_title">Watchlist</string>
     <string name="disclosure_warning">Please confirm your disclosure of COVID-19 infection.  Because this App does not track user identities, this disclosure cannot be undone.  This will disable notifications of nearby infection activity.</string>
     <string name="disclosure_gratitude">We have notified our servers. Thank you for helping others avoid exposure.</string>
+    <string name="latlng_header">Latitude, Longitude</string>
+    <string name="count_header">New counts in past 48 hours</string>
 </resources>
