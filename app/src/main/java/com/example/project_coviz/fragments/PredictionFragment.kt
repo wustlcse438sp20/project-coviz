@@ -7,19 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.project_coviz.MapsActivity
-import com.example.project_coviz.R
-import com.example.project_coviz.Settings
-import com.example.project_coviz.WatchlistAdapter
+import com.example.project_coviz.*
 import com.example.project_coviz.api.ApiClient
 import com.example.project_coviz.api.LocationAndTimestampData
 import com.example.project_coviz.db.LocRepository
-import com.example.project_coviz.db.LocRoomDatabase
-import com.example.project_coviz.s2.S2CellId
 import com.example.project_coviz.s2.S2LatLng
-import kotlinx.android.synthetic.main.prediction_fragment.*
-import java.util.*
 import kotlin.collections.HashMap
 
 class PredictionFragment : Fragment() {
@@ -43,6 +35,22 @@ class PredictionFragment : Fragment() {
         super.onStart()
 
         var watchlist: HashMap<S2LatLng, Int> = HashMap()
+        var olderCases= MutableLiveData<LocationAndTimestampData>()
+        var newerCases= MutableLiveData<LocationAndTimestampData>()
+        if(LatestLocation.getLatestCellToken() == null){
+
+        }
+        else{
+            ApiClient.APIRepository.getLocationAndTimestamps(olderCases,LatestLocation.getLatestCellToken()!!,Settings.HOURS_OF_DATA)
+            olderCases.observe(this, Observer {
+                // call update on sencond live mutable data
+                ApiClient.APIRepository.getLocationAndTimestamps(newerCases,LatestLocation.getLatestCellToken()!!,Settings.WATCHLIST_HOUR)
+            })
+            newerCases.observe(this, Observer {
+                // count number of cases in each cell for each set and get top n cells that have highest change in cases
+
+            })
+        }
 
 //        val calendar: Calendar = Calendar.getInstance()
 //        calendar.add(Calendar.HOUR, -1 * Settings.HOURS_OF_DATA)
