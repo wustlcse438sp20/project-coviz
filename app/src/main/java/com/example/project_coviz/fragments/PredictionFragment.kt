@@ -44,15 +44,9 @@ class PredictionFragment : Fragment() {
 
         var watchlist: HashMap<S2LatLng, Int> = HashMap()
 
-
-//        var casesLiveData: MutableLiveData<LocationAndTimestampData> = MutableLiveData()
-//
-//        casesLiveData.observe(activity as MapsActivity, Observer { cases ->
-//
-//        })
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.add(Calendar.HOUR, -1 * Settings.HOURS_OF_DATA)
-        val date: Date = calendar.time
+//        val calendar: Calendar = Calendar.getInstance()
+//        calendar.add(Calendar.HOUR, -1 * Settings.HOURS_OF_DATA)
+//        val date: Date = calendar.time
 //        locationRepo = LocRepository(LocRoomDatabase.getDatabase(activity as MapsActivity).locDao())
 //        ApiClient.APIRepository.locationAndTimestamps.observe(this, androidx.lifecycle.Observer {
 //            var infectionLocations = it;
