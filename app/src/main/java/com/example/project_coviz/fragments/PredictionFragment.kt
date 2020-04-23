@@ -48,13 +48,16 @@ class PredictionFragment : Fragment() {
         locationRepo.getLatestLocations(date) { locations ->
             for (userLocation in locations) {
                 var casesLiveData: MutableLiveData<LocationAndTimestampData> = MutableLiveData()
-                ApiClient.APIRepository.getLocationAndTimestamps(casesLiveData, LatestLocation.getLatestCellToken()!!)
-                val cellLatLng = S2CellId.fromToken(userLocation.cell_token).toLatLng()
-                watchlist.put(cellLatLng, casesLiveData.value!!.data.size)
-                println(userLocation)
-                println(cellLatLng)
+                casesLiveData.observe(activity as MapsActivity, Observer {
+                    val cellLatLng = S2CellId.fromToken(userLocation.cell_token).toLatLng()
+                    watchlist.put(cellLatLng, it.data.size)
+                    adapter.notifyDataSetChanged()
+                })
+                ApiClient.APIRepository.getLocationAndTimestamps(casesLiveData, userLocation.cell_token)
+                println(userLocation.id)
             }
         }
+
         adapter = WatchlistAdapter(watchlist.toList())
 
         adapter.notifyDataSetChanged()
